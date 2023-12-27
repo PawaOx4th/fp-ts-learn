@@ -1,6 +1,6 @@
 import * as O from "fp-ts/Option";
 import { cons } from "fp-ts/lib/ReadonlyNonEmptyArray";
-import { pipe } from "fp-ts/lib/function";
+import { pipe, identity } from "fp-ts/lib/function";
 
 /**
  * Calculates the inverse of a given number.
@@ -47,8 +47,9 @@ const getValue = (val: Parameters<typeof checkValueIsNotNull>[0]) => {
 		checkValueIsNotNull,
 		O.match(
 			() => "is null",
-			(val) => `value is ${val} and typeof is "${typeof val}"`,
+			// (val) => `value is ${val} and typeof is "${typeof val}"`,
+			identity,
 		),
 	);
 };
-console.log("[LOG] 🧡  is null ? :", getValue(1));
+console.log("[LOG] 🧡  is null ? :", getValue("1"));
